@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <style>
+        body {
+            background-image: url(xp.jpg);;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(13, 94, 13);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(13, 94, 13);
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        div{
+            margin-top: -150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Guessing Game</h1>
+        <p>Guess a number between 1 and 100:</p>
+        <input type="number" id="guessInput">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        var attempts = 0;
+
+        function checkGuess() {
+            var guess = document.getElementById("guessInput").value;
+            attempts++;
+            var message = document.getElementById("message");
+            if (guess < randomNumber) {
+                message.textContent = "Too low! Try again.";
+            } else if (guess > randomNumber) {
+                message.textContent = "Too high! Try again.";
+            } else {
+                message.textContent = "Congratulations! You guessed the number in " + attempts + " attempts!";
+                disableInput();
+            }
+        }
+
+        function disableInput() {
+            document.getElementById("guessInput").disabled = true;
+            document.querySelector("button").disabled = true;
+        }
+    </script>
+</body>
+
+</html>
